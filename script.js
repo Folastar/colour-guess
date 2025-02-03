@@ -43,6 +43,7 @@ function initGame() {
   // Create buttons for each color option
   options.forEach(color => {
     const button = document.createElement('button');
+    button.setAttribute("data-testid","colorOption")
     button.style.backgroundColor = color;
     button.addEventListener('click', () => handleGuess(color));
     colorOptions.appendChild(button);

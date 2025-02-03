@@ -130,3 +130,23 @@ body {
     0%{--gradient-angle:0deg}
     100%{--gradient-angle:360deg}  
   }
+
+
+  @media (max-width: 480px) {
+    /* Styles for all phones */
+    .game-container{
+      width: 80%;
+    }
+
+    .color-box{
+      width: 150px;
+      height: 150px;
+    }
+
+    button[data-testid="colorOption"] {
+      background-color: red;
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+  
