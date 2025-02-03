@@ -68,6 +68,7 @@ body {
     height: 200px;
     margin: 20px auto;
     border: 2px solid #000;
+    /* opacity: 0.1; */
   }
   
   .color-options {
@@ -104,6 +105,9 @@ body {
     background-color: #0056b3;
   }
   
+  span[data-testid="score"]{
+    font-size: 1.5rem;
+  }
   p {
     font-size: 18px;
     margin: 10px 0;
@@ -125,6 +129,32 @@ body {
 
 
 
+  @keyframes fadeoutWrong {
+    0%{
+      opacity: 1;
+    }
+
+    50%{
+      opacity: .5;
+    }
+
+    100%{
+      opacity: 0;
+    }
+  }
+
+  @keyframes celebration-bounce {
+    0%{
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+
+    100%{
+      transform: scale(1);
+    }
+  }
 
   @keyframes rotate {
     0%{--gradient-angle:0deg}

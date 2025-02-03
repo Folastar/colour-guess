@@ -25,7 +25,7 @@ function initGame() {
 //   colorBox.style.opacity="0"
 //   colorBox.style.border="1px solid red"
 
-  // Clear previous color options
+  // Clear previous color options to prevent multiple appends
   colorOptions.innerHTML = '';
 
   // Generate 6 color options, one of which is the target color
@@ -40,10 +40,10 @@ function initGame() {
   // Shuffle the options
   options.sort(() => Math.random() - 0.5);
 
-  // Create buttons for each color option
+  // Create buttons for each color option by iteration
   options.forEach(color => {
     const button = document.createElement('button');
-    button.setAttribute("data-testid","colorOption")
+    button.setAttribute("data-testid","colorOption")  // sets attribute to button
     button.style.backgroundColor = color;
     button.addEventListener('click', () => handleGuess(color));
     colorOptions.appendChild(button);
@@ -51,13 +51,16 @@ function initGame() {
 
   // Reset game status
   gameStatus.textContent = "Make your guess!";
+    gameStatus.style.color=""
+
 }
 
 // Function to handle user guesses
 function handleGuess(selectedColor) {
   if (selectedColor === targetColor) {
+    gameStatus.style.animation="celebration-bounce .5s linear alternate"
     initGame()
-    gameStatus.textContent = "Correct!";
+    gameStatus.textContent = "Correct! 🎊";
     gameStatus.style.color="green"
     score++;
     scoreElement.textContent = score;
@@ -65,20 +68,22 @@ function handleGuess(selectedColor) {
     colorBox.style.opacity="0.7"
   } else {
 
-    gameStatus.textContent = "Wrong! Try again.";
+    gameStatus.textContent = "Wrong! Try again. 😞";
     gameStatus.style.color="red"
+    gameStatus.style.animation="fadeoutWrong .5s linear alternate"
     colorBox.style.animation = "wrongGuess 0.5s ease";
   }
 
-  // Reset animation after it ends
+  // Reset styles after it ends
   setTimeout(() => {
     colorBox.style.animation = '';
+    gameStatus.style.animation=""
   }, 500);
 }
 
 // Event listener for the new game button
 newGameButton.addEventListener('click', () => {
-  score = 0;
+  score = 0;  //set score to default
   scoreElement.textContent = score;
   initGame();
 });
