@@ -1,0 +1,132 @@
+/* resets */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* rotate animation start */
+:root{
+  --clr-1:#626970;
+  --clr-2:#120777;
+  --clr-3:#9ab0c7;
+  --clr-4:#074149;
+  --clr-5:#24435e;
+
+
+
+}
+
+@property --gradient-angle {
+  syntax:'<angle>';
+  initial-value:0deg;
+  inherits: false;
+}
+
+
+
+.game-container:before,
+.game-container::after{
+    content: '';
+    position: absolute;
+    inset: -.1rem ;
+    z-index: -1;
+    background:conic-gradient(from var(--gradient-angle), var(--clr-2),var(--clr-4), var(--clr-5), var(--clr-3),var(--clr-1)
+    ) ;
+    border-radius: inherit;
+    animation: rotate 30s linear infinite;
+}
+
+.game-container::before{
+  filter: blur(1.5rem);
+}
+
+
+/* rotate animation ends */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #010911;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .game-container {
+    text-align: center;
+    background-color: #fffafa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .color-box {
+    width: 200px;
+    height: 200px;
+    margin: 20px auto;
+    border: 2px solid #000;
+  }
+  
+  .color-options {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .color-options button {
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .color-options button:hover {
+    transform: scale(1.1);
+  }
+  
+  button[data-testid="newGameButton"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  button[data-testid="newGameButton"]:hover {
+    background-color: #0056b3;
+  }
+  
+  p {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  @keyframes correctGuess {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+  
+  @keyframes wrongGuess {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-10px); }
+    100% { transform: translateX(0); }
+  }
+
+
+
+
+  @keyframes rotate {
+    0%{--gradient-angle:0deg}
+    100%{--gradient-angle:360deg}  
+  }
